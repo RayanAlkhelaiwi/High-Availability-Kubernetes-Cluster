@@ -1,0 +1,129 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pgdata-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-storage
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: patroni-cluster
+  labels:
+    app: patroni
+spec:
+  serviceName: "patroni"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: patroni
+  template:
+    metadata:
+      labels:
+        app: patroni
+    spec:
+      containers:
+        - name: patroni
+          image: zalando/patroni:latest
+          env:
+            - name: PATRONI_KUBERNETES_LABELS
+              value: "app=patroni"
+            - name: PATRONI_KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+#            - name: PATRONI_REPLICATION_PASSWORD
+#              value: "replication_password"
+#            - name: PATRONI_SUPERUSER_PASSWORD
+#              value: "superuser_password"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          ports:
+            - containerPort: 5432
+              name: postgresql
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: local-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patroni
+  labels:
+    app: patroni
+spec:
+  clusterIP: None
+  selector:
+    app: patroni
+  ports:
+    - port: 5432
+      name: postgresql
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: patroni-config
+  labels:
+    app: patroni
+data:
+  patroni.yml: |
+    scope: patroni-cluster
+    namespace: /db/
+    name: "{{ pod_name }}"
+    restapi:
+      listen: 0.0.0.0:8008
+      connect_address: "{{ pod_ip }}:8008"
+    postgresql:
+      listen: 0.0.0.0:5432
+      connect_address: "{{ pod_ip }}:5432"
+      data_dir: /data/pgdata
+      bin_dir: /usr/lib/postgresql/12/bin
+      parameters:
+        shared_buffers: 256MB
+        max_connections: 100
+        max_wal_senders: 10
+        wal_level: replica
+        hot_standby: "on"
+      authentication:
+        superuser:
+          password: "{{ PATRONI_SUPERUSER_PASSWORD }}"
+        replication:
+          password: "{{ PATRONI_REPLICATION_PASSWORD }}"
+    ttl: 30
+    loop_wait: 10
+    maximum_lag_on_failover: 1048576
+    master_start_timeout: 300
+    initdb:
+      - encoding: UTF8
+      - data-checksums
+    tags:
+      no_failover: false
+      clonefrom: false
+    bootstrap:
+      dcs:
+        ttl: 30
+        loop_wait: 10
+        maximum_lag_on_failover: 1048576
+      initdb:
+        - encoding: UTF8
+        - data-checksums
