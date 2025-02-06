@@ -177,7 +177,7 @@ vrrp_script check_apiserver {
 
 vrrp_instance VI_1 {
     state BACKUP           # Start in BACKUP state. All nodes start in this state by default to avoid master conflict, a.k.a split-brain
-    interface eth1         # Use eth1 interface for VRRP (Virtual Redundancy Routing Protocol)[^2]
+    interface eth1         # Use eth1 interface for VRRP (Virtual Redundancy Routing Protocol)
     virtual_router_id 1    # VRRP group ID
     priority 100           # initial priority value (the higher the value, the likely to become in MASTER state)
     advert_int 5           # VRRP advertisement interval every 5 secons
@@ -191,6 +191,8 @@ vrrp_instance VI_1 {
         check_apiserver    # The health checking script for adjusting priority 
     }
 }
+```
+For more VRRP info [^2]
 
 Then apply the configuration to the `KeepAlived` service:
 ```shell
