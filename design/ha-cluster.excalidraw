@@ -388,7 +388,7 @@
       "version": 197,
       "versionNonce": 84699329,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1738594700553,
       "link": null,
       "locked": false,
@@ -433,7 +433,7 @@
       "version": 145,
       "versionNonce": 1859928015,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1738594700553,
       "link": null,
       "locked": false,
@@ -457,7 +457,7 @@
       "id": "bjWZlIWAygd6YVlmdeykv",
       "type": "line",
       "x": 678.8408554150164,
-      "y": 337.33608729951084,
+      "y": 336.33608729951084,
       "width": 116,
       "height": 74,
       "angle": 0,
@@ -475,11 +475,11 @@
         "type": 2
       },
       "seed": 1033117793,
-      "version": 517,
-      "versionNonce": 736340129,
+      "version": 518,
+      "versionNonce": 1966061537,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1738594700553,
+      "updated": 1740489641328,
       "link": null,
       "locked": false,
       "points": [
@@ -502,7 +502,7 @@
       "id": "H74t4EdTUxqA8L2P4Vu5r",
       "type": "line",
       "x": 679.8408554150164,
-      "y": 336.33608729951084,
+      "y": 335.33608729951084,
       "width": 103,
       "height": 74,
       "angle": 0,
@@ -520,11 +520,11 @@
         "type": 2
       },
       "seed": 1439919169,
-      "version": 503,
-      "versionNonce": 872508911,
+      "version": 506,
+      "versionNonce": 1960676385,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1738594700553,
+      "updated": 1740489638990,
       "link": null,
       "locked": false,
       "points": [
@@ -734,7 +734,7 @@
       "version": 208,
       "versionNonce": 1145405505,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1738594700553,
       "link": null,
       "locked": false,
@@ -759,6 +759,96 @@
       "startArrowhead": null,
       "endArrowhead": "arrow",
       "elbowed": false
+    },
+    {
+      "id": "0eEzVgoOHIf2pXr0t8cvB",
+      "type": "line",
+      "x": 670.2873159300536,
+      "y": 336.0831430310383,
+      "width": 343.484375,
+      "height": 74.015625,
+      "angle": 0,
+      "strokeColor": "#888",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "al",
+      "roundness": {
+        "type": 2
+      },
+      "seed": 1000647073,
+      "version": 674,
+      "versionNonce": 936432047,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1740489628217,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -343.484375,
+          -74.015625
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
+    },
+    {
+      "id": "fxuNP6kZRQOXOTNXEzvoY",
+      "type": "line",
+      "x": 443.0967516161502,
+      "y": 333.59766748715185,
+      "width": 337.90625,
+      "height": 72.4375,
+      "angle": 0,
+      "strokeColor": "#888",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "am",
+      "roundness": {
+        "type": 2
+      },
+      "seed": 1994184577,
+      "version": 298,
+      "versionNonce": 2145020769,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1740489681010,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          337.90625,
+          -72.4375
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
     }
   ],
   "appState": {
