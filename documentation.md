@@ -549,7 +549,7 @@ Now registry is reachable with the pushed nginx image:
 Patroni is a high availability framework for PostgreSQL that automates failover, replication, and cluster management. When deploying PostgreSQL on k8s, Patroni solves challenges like leader election, automatic failover, and configuration consistency.
 
 - Patroni Architecture in Kubernetes:
-
+```
                       +------------------+
                       |  Kubernetes API  |
                       +--------+---------+
@@ -569,7 +569,7 @@ Patroni is a high availability framework for PostgreSQL that automates failover,
                      | (Replica)          |
                      | Managed by Patroni |
                      +--------------------+
-
+```
 
 
 First pull the patroni image
